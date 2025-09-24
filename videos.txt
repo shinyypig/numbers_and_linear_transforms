@@ -1,0 +1,4 @@
+file '/Users/liangliang/Git/Projects/Beauty_of_Matrix/numbers_and_linear_transforms/media/videos/1-welcome/1080p60/WelcomeScene.mp4'
+file '/Users/liangliang/Git/Projects/Beauty_of_Matrix/numbers_and_linear_transforms/media/videos/2-intro/1080p60/IntroScene.mp4'
+file '/Users/liangliang/Git/Projects/Beauty_of_Matrix/numbers_and_linear_transforms/media/videos/3-matrix_similar/1080p60/SimilarScene.mp4'
+file '/Users/liangliang/Git/Projects/Beauty_of_Matrix/numbers_and_linear_transforms/media/videos/4-jordan-form/1080p60/SimilarScene.mp4'
