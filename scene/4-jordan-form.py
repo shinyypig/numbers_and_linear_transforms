@@ -84,6 +84,7 @@ class JordanFormScene(Scene):
         self.play(
             FadeOut(
                 VGroup(
+                    title,
                     jordan_general,
                     jordan_block,
                     formula,
