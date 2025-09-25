@@ -39,7 +39,7 @@ class JordanFormScene(Scene):
             color=WHITE,
         )
         formula.to_edge(UP, buff=1).shift(RIGHT * 2.5)
-        self.play(FadeIn(formula, shift=DOWN))
+        self.play(FadeIn(formula, shift=UP))
 
         one_by_one = MathTex(
             r"J_{\lambda_i} = [\lambda_i], i=1,2,\cdots,k",
@@ -56,7 +56,7 @@ class JordanFormScene(Scene):
             color=WHITE,
         )
         formula2.next_to(one_by_one, DOWN, buff=0.8)
-        self.play(FadeIn(formula2, shift=DOWN))
+        self.play(FadeIn(formula2, shift=UP))
 
         diagonal = MathTex(
             r"\mathbf{D} = \begin{bmatrix} \lambda_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_k \end{bmatrix}",
@@ -66,3 +66,35 @@ class JordanFormScene(Scene):
         diagonal.next_to(formula2, DOWN, buff=0.5)
         self.play(FadeIn(diagonal, shift=UP))
         self.wait(0.4)
+
+        formula2_box = SurroundingRectangle(formula2, color=c1, buff=0.2)
+        formula2_box_text = Text("可对角化", font_size=24, color=c1)
+        formula2_box_text.next_to(formula2_box, RIGHT, buff=0.1)
+        self.play(Create(formula2_box))
+        self.play(Write(formula2_box_text))
+        self.wait(0.4)
+
+        formula_box = SurroundingRectangle(formula, color=c2, buff=0.2)
+        formula_box_text = Text("不可对角化", font_size=24, color=c2)
+        formula_box_text.next_to(formula_box, RIGHT, buff=0.1)
+        self.play(Create(formula_box))
+        self.play(Write(formula_box_text))
+        self.wait(0.4)
+
+        self.play(
+            FadeOut(
+                VGroup(
+                    jordan_general,
+                    jordan_block,
+                    formula,
+                    one_by_one,
+                    formula2,
+                    diagonal,
+                    formula_box,
+                    formula_box_text,
+                    formula2_box,
+                    formula2_box_text,
+                ),
+                shift=UP,
+            )
+        )
