@@ -5,7 +5,7 @@ import json
 import shutil
 
 SCENE_DIR = "scene"
-QUALITY = "high_quality"  # 可选: "low_quality", "medium_quality", "high_quality"
+QUALITY = "low_quality"  # 可选: "low_quality", "medium_quality", "high_quality"
 FRAME_RATE = 60
 OUTPUT_MP4 = "media/all_scenes_merged.mp4"
 OUTPUT_SRT = "media/all_scenes_merged.srt"
@@ -21,7 +21,7 @@ def find_py_files(path):
                 with open(full_path, "r", encoding="utf-8") as file:
                     code = file.read()
                     # 检查是否有 Scene 子类定义
-                    if "class " in code and "(Scene" in code:
+                    if "class " in code and "(Scene" in code or "(ThreeDScene" in code:
                         py_files.append(full_path)
     return sorted(py_files)
 
