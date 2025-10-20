@@ -5,7 +5,7 @@ import json
 import shutil
 
 SCENE_DIR = "scene"
-QUALITY = "low_quality"  # 可选: "low_quality", "medium_quality", "high_quality"
+QUALITY = "high_quality"  # 可选: "low_quality", "medium_quality", "high_quality"
 FRAME_RATE = 60
 OUTPUT_MP4 = "media/all_scenes_merged.mp4"
 OUTPUT_SRT = "media/all_scenes_merged.srt"
@@ -43,24 +43,42 @@ def render_all_scenes(py_file, quality=QUALITY, frame_rate=FRAME_RATE):
 
 def collect_mp4_srt_files(py_files):
     mp4s, srts = [], []
+    quality_to_resolution = {
+        "low_quality": "480",
+        "medium_quality": "720",
+        "high_quality": "1080",
+    }
+    preferred_suffix = None
+    if QUALITY in quality_to_resolution:
+        preferred_suffix = f"{quality_to_resolution[QUALITY]}p{FRAME_RATE}"
+
     for py in py_files:
         basename = os.path.splitext(os.path.basename(py))[0]
-        if QUALITY == "low_quality":
-            out_dir = os.path.join("media", "videos", basename, "480p15")
-        elif QUALITY == "medium_quality":
-            out_dir = os.path.join("media", "videos", basename, "720p30")
-        elif QUALITY == "high_quality":
-            out_dir = os.path.join("media", "videos", basename, "1080p60")
-        else:
-            raise ValueError("Unknown quality setting.")
-        if not os.path.exists(out_dir):
+        scene_dir = os.path.join("media", "videos", basename)
+        if not os.path.isdir(scene_dir):
             continue
-        videos = sorted([f for f in os.listdir(out_dir) if f.endswith(".mp4")])
-        for v in videos:
-            mp4_path = os.path.join(out_dir, v)
-            srt_path = mp4_path.replace(".mp4", ".srt")
-            mp4s.append(mp4_path)
-            srts.append(srt_path if os.path.exists(srt_path) else None)
+
+        candidate_dirs = []
+        if preferred_suffix:
+            expected_dir = os.path.join(scene_dir, preferred_suffix)
+            if os.path.isdir(expected_dir):
+                candidate_dirs.append(expected_dir)
+        if not candidate_dirs:
+            for entry in sorted(os.listdir(scene_dir)):
+                full_path = os.path.join(scene_dir, entry)
+                if os.path.isdir(full_path):
+                    candidate_dirs.append(full_path)
+
+        for out_dir in candidate_dirs:
+            videos = sorted([f for f in os.listdir(out_dir) if f.endswith(".mp4")])
+            if not videos:
+                continue
+            for v in videos:
+                mp4_path = os.path.join(out_dir, v)
+                srt_path = mp4_path.replace(".mp4", ".srt")
+                mp4s.append(mp4_path)
+                srts.append(srt_path if os.path.exists(srt_path) else None)
+            break
     return mp4s, srts
 
 

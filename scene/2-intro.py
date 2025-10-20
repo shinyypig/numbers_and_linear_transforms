@@ -34,9 +34,12 @@ class IntroScene(Scene):
         txt.to_edge(UL, buff=0.2)
         self.play(
             Write(txt),
-            subcaption="我们知道一个方阵对应了一种特殊的线性变换",
-            subcaption_duration=5,
+            run_time=2,
+            subcaption="我们知道nxn的矩阵可以表示一个线性变换",
+            subcaption_duration=7,
         )
+        self.wait(5)
+
         mtxt = MathTex(
             r"\mathbf{T} \in \mathbb{R}^{n \times n}: \mathbb{R}^{n} \to \mathbb{R}^{n}",
             font_size=32,
@@ -46,10 +49,11 @@ class IntroScene(Scene):
 
         self.play(
             Write(mtxt),
-            subcaption="它可以将线性空间中的向量映射到该线性空间中的另一个向量",
-            subcaption_duration=7,
+            run_time=2,
+            subcaption="而该变换可以将n维线性空间中的元素\n线性映射到该空间中的另一个元素",
+            subcaption_duration=6,
         )
-        # self.wait(10)
+        self.wait(8)
         self.play(FadeOut(mtxt))
 
         scale_txt = Text("1. 缩放变换", font_size=32, color=WHITE)

@@ -213,7 +213,9 @@ class DiagScene(Scene):
 
         vgrp.next_to(tex3, DOWN, buff=0.5)
         self.play(Write(tex4_1), Write(tex4_2), Write(tex4_5), Write(tex4_8))
+        self.wait(1)
         self.play(Write(tex4_3), Write(tex4_4), Write(tex4_6), Write(tex4_7))
+        self.wait(1)
 
         box1 = SurroundingRectangle(VGroup(tex4_3, tex4_4), buff=0.1, color=WHITE)
         box2 = SurroundingRectangle(VGroup(tex4_6, tex4_7), buff=0.1, color=WHITE)

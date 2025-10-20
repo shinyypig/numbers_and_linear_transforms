@@ -81,21 +81,21 @@ class JordanFormScene(Scene):
         self.play(Write(formula_box_text))
         self.wait(0.4)
 
-        self.play(
-            FadeOut(
-                VGroup(
-                    title,
-                    jordan_general,
-                    jordan_block,
-                    formula,
-                    one_by_one,
-                    formula2,
-                    diagonal,
-                    formula_box,
-                    formula_box_text,
-                    formula2_box,
-                    formula2_box_text,
-                ),
-                shift=UP,
-            )
-        )
+        # self.play(
+        #     FadeOut(
+        #         VGroup(
+        #             title,
+        #             jordan_general,
+        #             jordan_block,
+        #             formula,
+        #             one_by_one,
+        #             formula2,
+        #             diagonal,
+        #             formula_box,
+        #             formula_box_text,
+        #             formula2_box,
+        #             formula2_box_text,
+        #         ),
+        #         shift=UP,
+        #     )
+        # )

@@ -232,8 +232,8 @@ class NonDiagScene(ThreeDScene):
         # lambda_value_3d.clear_updaters()
         # cube_trans.suspend_updating()
         # grp.suspend_updating()
-        self.play(
-            FadeOut(grp, shift=DOWN),
-            FadeOut(VGroup(matrix_3d, lambda_group_3d, box_3d), shift=LEFT),
-        )
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(grp, shift=DOWN),
+        #     FadeOut(VGroup(matrix_3d, lambda_group_3d, box_3d), shift=LEFT),
+        # )
+        # self.wait(0.3)
